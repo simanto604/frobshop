@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'compressor',
     'south',
-] + get_core_apps()
+] + get_core_apps(["frobshop.catalogue", 'frobshop.promotions'])
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -42,8 +42,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'oscar.apps.basket.middleware.BasketMiddleware',
+    
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    'oscar.apps.basket.middleware.BasketMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -58,16 +59,31 @@ ROOT_URLCONF = 'frobshop.urls'
 WSGI_APPLICATION = 'frobshop.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'ATOMIC_REQUESTS': True,
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'frobshop',
+        'USER': 'postgres',
+        'PASSWORD': 'qweqwe',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'd9git0t5pmceum',
+#         'USER': 'udluyaiovkbpkz',
+#         'PASSWORD': 'bRcDMqP06MVB5HjdWScw_ByyAf',
+#         'HOST': 'ec2-54-243-49-82.compute-1.amazonaws.com',
+#         'PORT': '5432',
+
+#     }
+# }
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.auth.context_processors.auth",
@@ -78,6 +94,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.static",
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
+
     'oscar.apps.search.context_processors.search_form',
     'oscar.apps.promotions.context_processors.promotions',
     'oscar.apps.checkout.context_processors.checkout',
@@ -132,12 +149,17 @@ STATICFILES_DIRS = (
     location('statics'),
 )
 # MEDIA_ROOT = BASE_DIR + '/images/'
-from oscar import OSCAR_MAIN_TEMPLATE_DIR
 
-TEMPLATE_DIRS = ( 
-    OSCAR_MAIN_TEMPLATE_DIR,
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+    'django.template.loaders.eggs.Loader',
+)
+
+from oscar import OSCAR_MAIN_TEMPLATE_DIR
+TEMPLATE_DIRS = (
     location('templates'),
-    
+    OSCAR_MAIN_TEMPLATE_DIR,
 )
 
 OSCAR_INITIAL_ORDER_STATUS = 'Pending'
@@ -154,3 +176,7 @@ from oscar.defaults import *
 OSCAR_SHOP_NAME = 'Demo Shop'
 
 THUMBNAIL_DEBUG = True
+
+COMPRESS_PRECOMPILERS = (
+    ('text/less', 'lessc {infile} {outfile}'),
+)

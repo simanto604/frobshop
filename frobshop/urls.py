@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from oscar.app import application
+# from frobshop.app import application
 from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()

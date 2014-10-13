@@ -13,6 +13,7 @@ django-oscar==0.7
 django-treebeard==2.0
 gunicorn==19.1.1
 phonenumbers==6.0.0a
+psycopg2==2.5.4
 purl==1.0
 pytz==2014.7
 six==1.8.0
