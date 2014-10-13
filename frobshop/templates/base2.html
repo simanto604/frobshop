@@ -61,20 +61,19 @@
       correctly.
     {% endcomment %}
     {% compress css %}
-      {% if use_less %}
-          <link rel="stylesheet" type="text/less" href="{% static 'oscar/less/styles.less' %}" />
-          <link rel="stylesheet" type="text/less" href="{% static 'oscar/less/responsive.less' %}" />
-      {% else %}
-          <link rel="stylesheet" type="text/css" href="{% static 'verecom/css/bootstrap.css' %}" />
-          <link rel="stylesheet" type="text/css" href="{% static 'verecom/css/responsive.css' %}" />
-          <link rel="stylesheet" type="text/css" href="{% static 'verecom/css/layout.css' %}" />
-          <link rel="stylesheet" type="text/css" href="{% static 'verecom/fonts/font.css' %}" />
-          <link type="text/css" rel="stylesheet" href="{% static 'verecom/css/global2.css' %}" media="all">
+      
+      <link rel="stylesheet" type="text/css" href="{% static 'oscar/css/styles.css' %}" />
+      <link rel="stylesheet" type="text/css" href="{% static 'oscar/css/responsive.css' %}" />
+      <link rel="stylesheet" type="text/css" href="{% static 'verecom/css/bootstrap.css' %}" />
+      <link rel="stylesheet" type="text/css" href="{% static 'verecom/css/layout.css' %}" />
+      <link rel="stylesheet" type="text/css" href="{% static 'verecom/fonts/font.css' %}" />
+      <link type="text/css" rel="stylesheet" href="{% static 'verecom/css/global2.css' %}" media="all">
+      <link type="text/css" rel="stylesheet" href="{% static 'verecom/css/custom.css' %}" media="all">
           
-      {% endif %}
     {% endcompress %}
   {% endblock %}
 {% endblock %}
+{% block extrastyles %}{% endblock %}
   </head>
 
 <body>
@@ -87,13 +86,11 @@
   {% include "verecom/partials/top-header.html" %}
 {% endblock header2 %}
  <!-- End Header -->
-
+{% block layout %}
  <!-- Start Content Area-->
-{% block content2 %}
-  {% include "verecom/partials/home-content.html" %}
-{% endblock content2 %}
+
   <!-- End Content Area -->
-   
+{% endblock layout %}
   <!-- Start Footter Area -->
 {% block footer %}
   {% include "verecom/footer.html" %}
@@ -113,6 +110,7 @@
     {% endcompress %}
 {% endblock %}
 
+{% block extrascripts %}{% endblock %}
 <script type="text/javascript">
 	$('.carousel').carousel()
 </script>

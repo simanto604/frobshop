@@ -1,0 +1,13 @@
+{% extends "base2.html" %}
+{% load compress %}
+{% load promotion_tags %}
+
+{% block layout %}
+    
+{% endblock %}
+
+
+{% block extrascripts %}
+    {% include "partials/extrascripts.html" %}
+    {{ block.super }}
+{% endblock %}

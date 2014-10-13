@@ -1,0 +1,25 @@
+@media (min-width: 1200px) {
+	.menu-item {
+		margin-left: 0px !important;
+	}
+}
+.controls > textarea, .controls > input[type="text"], .controls > input[type="password"], 
+.controls > input[type="datetime"], .controls > input[type="datetime-local"], 
+.controls > input[type="date"], .controls > input[type="month"], .controls > input[type="time"], 
+.controls > input[type="week"], .controls > input[type="number"], .controls > input[type="email"], 
+.controls > input[type="url"], .controls > input[type="search"], .controls > input[type="tel"], 
+.controls > input[type="color"], .uneditable-input {
+	line-height: 20px;
+	padding: 4px 6px;
+	height: 30px !important;
+	border-radius: 4px;
+	width: 206px;
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+	background-color: rgb(250, 255, 189);
+}
+
+.alert .close {
+	right: 0px !important;
+}
