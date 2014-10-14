@@ -9,7 +9,9 @@
 {% block product %}
 
     <div class="product col-md-3">
+    {% if product.primary_image %}
         <div class="product-img thumbnail">
+        
             {% with image=product.primary_image %}
                 {% thumbnail image.original "x155" upscale=False as thumb %}
                 <a href="{{ product.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ product.get_title }}" class=""></a>
@@ -22,7 +24,9 @@
                  
                 </ul>
             </div>
+        
         </div>
+    {% endif %}
         <div class="pro-text">
         {% purchase_info_for_product request product as session %}
             <h2>{{ product.get_title|truncatewords:4 }}</h2>
