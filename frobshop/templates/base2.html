@@ -26,8 +26,7 @@
     <![endif]-->
     
     
-    <script type="text/javascript" src="{% static 'verecom/js/global2.js' %}"></script>
-    <script type="text/javascript" src="{% static 'verecom/js/config.js' %}"></script>
+
     
 	<script type="text/javascript">
     var onOffSwitch = true;
@@ -64,18 +63,20 @@
     {% endcomment %}
     {% compress css %}
       
+      <link rel="stylesheet" type="text/css" href="{% static 'verecom/css/productarray.css' %}">
       <link rel="stylesheet" type="text/css" href="{% static 'oscar/css/styles.css' %}" />
       <link rel="stylesheet" type="text/css" href="{% static 'oscar/css/responsive.css' %}" />
       <link rel="stylesheet" type="text/css" href="{% static 'verecom/css/bootstrap.css' %}" />
       <link rel="stylesheet" type="text/css" href="{% static 'verecom/css/layout.css' %}" />
       <link rel="stylesheet" type="text/css" href="{% static 'verecom/fonts/font.css' %}" />
       <link type="text/css" rel="stylesheet" href="{% static 'verecom/css/global2.css' %}" media="all">
-      <link type="text/css" rel="stylesheet" href="{% static 'verecom/css/custom.css' %}" media="all">
+      
           
     {% endcompress %}
   {% endblock %}
 {% endblock %}
 {% block extrastyles %}{% endblock %}
+<link type="text/css" rel="stylesheet" href="{% static 'verecom/css/custom.css' %}" media="all">
   </head>
 
 <body>
@@ -85,7 +86,7 @@
 {% endblock %}
  <!-- Start Header -->
 {% block header2 %}
-  {% include "verecom/partials/top-header.html" %}
+  {% include "verecom/top-header.html" %}
 {% endblock header2 %}
  <!-- End Header -->
 
@@ -103,14 +104,17 @@
 
 {% block scripts %}
     {% compress js %}
-    <!-- Twitter Bootstrap -->
-    <script type="text/javascript" src="{% static "oscar/js/bootstrap/bootstrap.min.js" %}"></script>
-
     <!-- Jquery -->
-    <script type="text/javascript" src="{% static "oscar/js/jquery/jquery-1.9.1.min.js" %}"></script>
+    <script type="text/javascript" src="{% static 'verecom/js/jquery-1.11.1.min.js' %}"></script>
     
+    <!-- Twitter Bootstrap -->
+    <script type="text/javascript" src="{% static 'oscar/js/bootstrap/bootstrap.min.js' %}"></script>
+
     <!-- Oscar -->
-    <script src="{% static "oscar/js/oscar/ui.js" %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'oscar/js/oscar/ui.js' %}" type="text/javascript" charset="utf-8"></script>
+
+    
+    <script type="text/javascript" src="{% static 'verecom/js/config.js' %}"></script>
     {% endcompress %}
 {% endblock %}
 
@@ -124,5 +128,5 @@
         {% block onbodyload %}{% endblock %}
     });
 </script>
-  </body>
+</body>
 </html>

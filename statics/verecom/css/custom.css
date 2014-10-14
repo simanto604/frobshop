@@ -27,3 +27,53 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 	margin-left: 113px !important;
 	float: none !important;
 }
+.peoduct-bag {
+	padding: 0px !important;
+	position: relative;
+}
+.peoduct-bag button.bag-btn {
+	background: none repeat scroll 0 0 #000 !important;
+	color: #fff !important;
+	display: block !important;
+	float: left !important;
+	font-family: Arial,Helvetica,sans-serif !important;
+	font-size: 13px !important;
+	padding: 8px 15px !important;
+	text-align: center !important;
+	text-transform: uppercase !important;
+	width: auto !important;
+	font-weight: bold !important;
+	border: 1px solid #000 !important;
+
+}
+#add_to_basket_form button.bag-btn {
+
+	position: absolute;
+	top: 25px;
+	left: 90px;
+}
+.peoduct-bag input[type='number']{
+	width: 80px;
+background-color: #fff;
+border: 1px solid #dfdfdf;
+border-radius: 0;
+box-shadow: none;
+box-sizing: border-box;
+color: #000;
+font-size: 12px;
+font-weight: 400;
+line-height: normal;
+min-height: 30px;
+transition: border 200ms ease 0s;
+}
+.peoduct-bag .control-group {
+	/*display: inline-block;*/
+	width: 100px;
+
+}
+.ac-container label {
+	width: 95%;
+}
+#thumbs {
+	margin-top: 0px;
+}

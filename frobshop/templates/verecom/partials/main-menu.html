@@ -1,0 +1,28 @@
+{% load category_tags %}
+{% load i18n %}
+<div class="menu-con">
+    <ul class="menu no-gs">
+        <li id="ShopByDesignerNavMenu" class="menu-item span-3 first-child">
+            <a href="{% url 'catalogue:index' %}">WHAT'S NEW</a>
+            <ul class="sub-menu">
+                <li class="sub-menu-column first-child">
+                    <b>DESIGNERS BY CATEGORY</b>
+                    <ul>
+                    {% category_tree depth=2 as tree_categories %}
+                        <li>
+                            <a tabindex="-1" href="{% url 'catalogue:index' %}">{% trans "Show All" %}</a>
+                        </li>
+                        {% if tree_categories %}
+                            <li class="divider"></li>
+                            {% for tree_category, info in tree_categories %}
+
+                                <li><a tabindex="-1" href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a></li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+</div>

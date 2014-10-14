@@ -1,0 +1,115 @@
+<div class="search-marketing search-marketing-desktop">
+    <div class="tag">
+    <!-- PROMOTIONS --> 
+        <ul style="position: relative; overflow: hidden;" id="js-promotion-banners-two" class="promotion-banners">
+            <li class="cycle-slide cycle-sentinel" style="position: static; top: 0px; left: 0px; z-index: 100; opacity: 1; visibility: hidden; display: block;" data-recipe="" data-test="" data-disclaimer="" data-countries="US">
+                <p style="visibility: hidden;">
+                <strong style="visibility: hidden;">FREE SHIPPING </strong>every day, every order<br style="visibility: hidden;">
+                Use Code <strong style="visibility: hidden;">FREESHIP</strong> <u style="visibility: hidden;">Details</u></p>
+            </li>             
+            <li class="cycle-slide" style="position: absolute; top: 46px; left: 0px; z-index: 99; opacity: 1; display: none;" data-recipe="" data-test="" data-disclaimer="FreeShippingDetailsPopUp" data-countries="US">
+                <p>
+                <strong>FREE SHIPPING </strong>every day, every order<br>
+                Use Code <strong>FREESHIP</strong> <u>Details</u></p>
+            </li>
+            <li class="cycle-slide cycle-slide-active" style="position: absolute; top: 0px; left: 0px; z-index: 98; display: block; opacity: 1;" data-recipe="" data-test="" data-disclaimer="" data-countries="US">
+                {% if not user.is_authenticated %}
+                <p>
+                <strong>EMAIL-ONLY SALES </strong> Register now to stay in the loop.   <a href="{% url 'customer:register' %}"  >Sign Up</a></p>
+                {% endif %}
+
+            </li>
+            <li class="cycle-slide" style="position: absolute; top: 46px; left: 0px; z-index: 97; display: none; opacity: 1;" data-recipe="" data-test="" data-disclaimer="EGC2000PopUpDetails" data-countries="US">
+                <p>
+                <strong>WIN A $2,000 SAKS GIFT CARD</strong> Sign up for Saks Text Alerts <strong>TEXT SAKSGC</strong> to <strong>75283</strong> <u>Details</u></p>
+            </li>
+        </ul>
+    <!-- END PROMOTIONS -->
+
+        <div id="saksBody2">
+            <div class="promotion-detail-container" id="js-promotion-detail-container-two">
+            <!-- START FREE SHIPPING POPUP -->
+
+
+                <article id="FreeShippingDetailsPopUp" class="promotion-details is-hidden is-promotion-details-normal">
+                <a class="promotion-details-close-button" href="#">
+                <span class="font-icon font-icon-close"></span>
+                </a>
+
+
+                <div class="promotion-details-heading">
+                <h1 style="text-align: center;" class="promotion-details-title">FREE SHIPPING* every day, every order</h1>
+                <p style="text-align: center;" class="promotion-details-cutoff">Use Code <strong>FREESHIP</strong></p>
+                </div>
+
+                <div class="promotion-details-disclaimer">
+                <p>
+                *Free Shipping offer valid with any purchase. Limit of five promo 
+                codes per order. Offer valid at saks.com only. To redeem, select 
+                standard shipping and enter promotional code: FREESHIP. Valid on 
+                shipments to US addresses only. Not valid on international shipments. 
+                Offer may be used when shipping to multiple addresses. Offer not valid 
+                on Rush, Next Business Day, or Saturday delivery orders. Not valid in 
+                Saks Fifth Avenue stores, Saks Fifth Avenue OFF 5TH stores, and 
+                saksoff5th.com. Not valid on standalone physical or promotional Gift 
+                Card shipments. For Drop Ship items, offer only applies to items 
+                eligible for standard shipping. No adjustments to prior purchases. This 
+
+
+                offer is non-transferable. Saks' return policy still applies to items 
+                returned under this offer.</p>
+                <p>
+                <a style="text-decoration: underline;" href="#" >Click here</a>&nbsp;for additional shipping &amp; tax information.</p>
+                </div>
+                </article>
+
+                <article id="EGC2000PopUpDetails2" class="promotion-details is-hidden is-promotion-details-normal">
+                <a class="promotion-details-close-button" href="#" >
+                <span class="font-icon font-icon-close"></span>
+                </a>
+
+                <div class="promotion-details-heading">
+                <p style="text-align: center;" class="promotion-details-cutoff">You Could </p>
+                <h1 style="text-align: center;" class="promotion-details-title">WIN A $2,000 SAKS GIFT CARD* </h1>
+
+
+                <p style="text-align: center;" class="promotion-details-cutoff">WHEN YOU TEXT <strong>SAKSGC</strong> TO <strong>75283</strong> &amp; SIGN UP FOR SAKS TEXT ALERTS!<br><br>
+                Get trends, sales, store events &amp; more delivered to your phone.<br>
+                </p>
+                </div>
+
+
+                <div class="promotion-details-disclaimer">
+                <p>
+                *By texting SAKSGC to 75283, you are entering the Saks Text Alerts 
+                Gift Card Sweepstakes and agree to receive up to 3 autodialed marketing 
+                text messages per week delivered to the phone number provided at opt-in.
+                Text HELP for info. Text STOP to cancel. Consent not required to 
+                purchase goods or services. Message and data rates may apply. Visit 
+                saksfifthavenue.com/policies for privacy policy and more information. </p>
+
+                <p><strong>No purchase/text necessary to enter or win.</strong> Open to legal residents of the 50 U.S. (+DC) age 18 or older at time of entry. Void where prohibited. See Official Rules <a   href="#"   style="color:#000">here</a> for details including alternate entry method. Ends: 11:59:59 PM ET on 10/26/14. </p>
+                </div>
+                </article>
+
+
+
+            </div>
+
+            <div id="allDhtmlPopups"></div>
+
+        </div>
+    </div>
+    <div id="site-search">
+
+        <form method="get" action="{% url 'search:search' %}" class="navbar-form pull-right">
+
+            <div class="search-box">
+            {{ search_form.q }}
+
+            <button name="submit-search" type="submit">search</button>
+            </div>
+
+        </form>
+    </div>
+</div>

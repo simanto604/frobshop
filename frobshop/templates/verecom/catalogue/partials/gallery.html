@@ -1,0 +1,29 @@
+{% load thumbnail %}
+{% load i18n %}
+
+{% with all_images=product.images.all %}
+    {# use length rather then count as the images get queried anyways #}
+
+    
+    <div id="sliderFrame">
+        <div id="slider">            
+            {% for image in all_images %}
+                {% thumbnail image.original "440x400" upscale=False as thumb %}
+                    <img src="{{ thumb.url }}" alt="{{ product.get_title }}" />
+                {% endthumbnail %}
+            {% endfor %}
+        </div>
+        <div id="thumbs">
+            {% with image=product.primary_image %}
+                {% for image in all_images %}
+                    {% thumbnail image.original "440x400" upscale=False as thumb %}
+                        <div class="thumb">
+                            <img src="{{ thumb.url }}" alt="{{ product.get_title }}" />
+                        </div>
+                    {% endthumbnail %}
+                {% endfor %}
+            {% endwith %}
+        </div>
+    </div>
+    
+{% endwith %}

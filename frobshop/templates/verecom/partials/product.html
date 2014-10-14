@@ -8,7 +8,7 @@
 
 {% block product %}
 
-    <div class="product">
+    <div class="product col-md-3">
         <div class="product-img thumbnail">
             {% with image=product.primary_image %}
                 {% thumbnail image.original "x155" upscale=False as thumb %}

@@ -1,0 +1,96 @@
+{% load staticfiles %}
+{% load purchase_info_tags %}
+{% load currency_filters %}
+{% load i18n %}
+{% load history_tags %}
+
+<div class="content-area">
+    <div class="container pro-detailsconteiner">
+        <div class="slider-con">
+            
+            {% include "verecom/catalogue/partials/gallery.html" %}
+            
+        </div>
+
+        <div class="rightslider-content">
+
+            <div class="pro-title-con">
+                <h2>Roberto Cavalli</h2>
+                <p>Punto Python-Print Dress</p>
+                <span>0459128046535</span>
+            </div>
+            <div class="size-area">
+                <p>Size:</p> <a href="#" class="sizeguide">Size Guide</a> 
+                <div class="wrapper-demo">
+                    <div id="dd" class="wrapper-dropdown-3" tabindex="1">
+                        <span>Transport</span>
+                        <ul class="dropdown">
+                            <li><a href="#"> 38 (2)</a></li>
+                            <li><a href="#"> 40 (4)</a></li>
+                            <li><a href="#"> 42 (6)</a></li>
+                            <li><a href="#"> 44 (8)</a></li>
+                            <li><a href="#"> 46 (10)</a></li>
+                            <li><a href="#"> 48 (12)</a></li>
+                             
+                             
+                        </ul>
+                    </div>
+                ​</div>            
+            </div>
+            <div class="color-con">
+                <p>Color: <span>Black</span> </p>
+                <div class="color"><span></span></div>
+            </div>
+            <div>
+                {% for av in product.attribute_values.all %}
+                    <tr>
+                        <th>{{ av.attribute.name }}</th>
+                        <td>{{ av.value_as_html }}</td>
+                    </tr>
+                {% endfor %}
+            </div>
+
+            <div class="price">
+                
+                {% purchase_info_for_product request product as session %}
+                    {% if session.price.exists %}
+                        <tr>
+                            <th>{% trans "Price (excl. tax)" %}</th><td><h3>{{ session.price.excl_tax|currency:session.price.currency }}</h3></td>
+                        </tr>
+                        {% if session.price.is_tax_known %}
+                            <tr>
+                                <th>{% trans "Price (incl. tax)" %}</th><td><h3>{{ session.price.incl_tax|currency:session.price.currency }}</h3></td>
+                            </tr>
+                            
+                        {% endif %}
+                    {% endif %}
+            </div>
+
+            <div class="peoduct-bag">
+                {% include "verecom/catalogue/partials/add_to_basket_form.html" %}
+            </div>
+
+            <div class="pro-details-con">
+
+                <div class="ac-container">
+                    <div>
+                        <input id="ac-4" name="accordion-1" type="checkbox" />
+                        <label for="ac-4">Details</label>
+                        <article class="ac-large">
+
+                            {% if product.description %}
+                            <p>                                
+                                <div id="product_description" class="sub-header">
+                                    <h2>{% trans "Product Description" %}</h2>
+                                </div>
+                                {{ product.description|safe }}</p>
+                            </p>
+                            {% endif %}
+                            
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+{% load staticfiles %}
+{% load i18n %}
+<header id="header">
+	<div class="container">
+      <!-- Start Top Link  -->
+        <div class="toplink">
+        	<div class="logo">
+            	<a href="/"><img src="{% static 'verecom/images/logo.jpg' %}" alt="Logo"></a>
+            </div>
+            
+            <div class="top-toolbar top-toolbar-mobile">
+            	<ul>
+                	<li><span>Welcome, Sign In</span></li>
+                 </ul>
+             </div>
+            
+            <div id="toolbar" class="top-toolbar top-toolbar-desktop">
+            	<ul>
+                	
+                    {% if user.is_authenticated %}
+                        <li>
+                            {% if num_unread_notifications > 0 %}
+                                {# If user has new notifications - we change account link to go to inbox #}
+                                <a href="{% url 'customer:notifications-inbox' %}">
+                                    <i class="icon-user"></i>
+                                    {% trans "Account" %}
+                                    <span class="label label-important">{{ num_unread_notifications }}</span>
+                                </a>
+                            {% else %}
+                                <a href="{% url 'customer:summary' %}"><i class="icon-user"></i> {% trans "Account" %}</a>
+                            {% endif %}
+                        </li>
+                        {% if user.is_staff or perms.partner.dashboard_access %}
+                            <li><a href="{% url 'dashboard:index' %}"><i class="icon-list-ul"></i> {% trans "Dashboard" %}</a></li>
+                        {% endif %}
+                        <li><a id="logout_link" href="{% url 'customer:logout' %}"><i class="icon-signout"></i> {% trans "Logout" %}</a></li>
+                    {% else %}
+                        <li><a id="login_link" href="{% url 'customer:login' %}"><i class="icon-signin"></i> <span>Welcome, Sign In</span></a></li>
+                    {% endif %}
+
+
+                    <li><a href="#">Chat</a></li>
+                    <li><a href="#">Shop With Confidence</a></li>
+                    <li><a href="#"class=" dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">Saks Bag (0)</a>
+                    </li>
+                     
+                </ul>         
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+      <!-- End Top Link -->      
+        <!-- Start  PROMOTIONS FOR Tablet View  -->
+         <!-- End  PROMOTIONS FOR Tablet View  --> 
+        
+         <!-- Start  Main Menu FOR Desktop View  --> 
+    {% include "verecom/partials/main-menu.html" %}
+       <!-- End  Main Menu FOR Desktop View  --> 
+        <div class="clearfix"></div>
+        
+        <!-- Start PROMOTIONS and SEARCH   FOR Desktop View  --> 
+    {% include "verecom/partials/promotions-and-search.html" %}
+        <!-- End  PROMOTIONS and SEARCH   FOR Desktop View  --> 
+        
+      <!-- Start Main menu for Mobile  View  -->   
+    {% include "verecom/partials/main-menu-mobile.html" %}
+    </div>
+</header>
