@@ -61,29 +61,29 @@ WSGI_APPLICATION = 'frobshop.wsgi.application'
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'frobshop',
-        'USER': 'postgres',
-        'PASSWORD': 'qweqwe',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'dbc9oe93rmape1',
-#         'USER': 'gljzvhkgcjfaac',
-#         'PASSWORD': 'bNH6m06RJWHbVGdEhysknrp89y',
-#         'HOST': 'ec2-54-204-38-16.compute-1.amazonaws.com',
+#         'NAME': 'frobshop',
+#         'USER': 'postgres',
+#         'PASSWORD': 'qweqwe',
+#         'HOST': '127.0.0.1',
 #         'PORT': '5432',
 
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dbc9oe93rmape1',
+        'USER': 'gljzvhkgcjfaac',
+        'PASSWORD': 'bNH6m06RJWHbVGdEhysknrp89y',
+        'HOST': 'ec2-54-204-38-16.compute-1.amazonaws.com',
+        'PORT': '5432',
+
+    }
+}
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.auth.context_processors.auth",
