@@ -133,7 +133,7 @@ SITE_ID = 1
 # EMAIL_USE_TLS = False
 
 
-MEDIA_ROOT = location("public/media")
+MEDIA_ROOT = "/home/django/frobshop/media"
 MEDIA_URL = '/media/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
