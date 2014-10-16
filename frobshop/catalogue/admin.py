@@ -1,6 +1,8 @@
 from django.contrib import admin
 from oscar.core.loading import get_model
 from treebeard.admin import TreeAdmin
+from frobshop.catalogue.models import SizeNFit
+
 
 AttributeEntity = get_model('catalogue', 'AttributeEntity')
 AttributeEntityType = get_model('catalogue', 'AttributeEntityType')
@@ -90,3 +92,4 @@ admin.site.register(Option, OptionAdmin)
 admin.site.register(ProductImage)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(ProductCategory)
+admin.site.register(SizeNFit)

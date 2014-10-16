@@ -47,20 +47,23 @@
     </ul>
 </div>
 
-    {% if products %}
+    
         <div class="rightside">
             <div class="page-location">
                 <ul>
                     <li><a href="#">Women's Apparel</a></li>
                     <li> &gt; </li>
-                    <li> Best Sellers </li>
+                    <li>hello</li>
                 </ul>
             </div>
             
             <div class="cat-title-area">
-                <span>Best Sellers</span> <h2>Women's Apparel</h2>
+            {% with category=product.categories.all.0 %}
+                <span>Best Sellers</span> <h2>hello</h2>
                 
+            {% endwith %}
             </div>
+        {% if products %}
             <div class="product-con">
                 {% for product in products %}
                     {% include "verecom/partials/product.html" %}
@@ -68,10 +71,9 @@
                 {% include "partials/pagination.html" %}
             </div>
             
-        </div>
-    {% else %}
-        <div class="rightside">
+        {% else %}
             {% trans "No products found." %}
+        
+        {% endif %}
         </div>
-    {% endif %}
 {% endblock content %}

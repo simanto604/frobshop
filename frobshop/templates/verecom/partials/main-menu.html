@@ -2,27 +2,28 @@
 {% load i18n %}
 <div class="menu-con">
     <ul class="menu no-gs">
-        <li id="ShopByDesignerNavMenu" class="menu-item span-3 first-child">
-            <a href="{% url 'catalogue:index' %}">WHAT'S NEW</a>
+{% category_tree depth=2 as root_categories %}
+{% for product_type in product_types %}
+
+    <li id="{{ tree_category.name }}" class="menu-item span-3 first-child">
+        <a href="{{ product_type.get_absolute_url }}">{{product_type.name}}</a>
             <ul class="sub-menu">
                 <li class="sub-menu-column first-child">
-                    <b>DESIGNERS BY CATEGORY</b>
-                    <ul>
-                    {% category_tree depth=2 as tree_categories %}
-                        <li>
-                            <a tabindex="-1" href="{% url 'catalogue:index' %}">{% trans "Show All" %}</a>
-                        </li>
-                        {% if tree_categories %}
-                            <li class="divider"></li>
-                            {% for tree_category, info in tree_categories %}
-
-                                <li><a tabindex="-1" href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a></li>
-                            {% endfor %}
+                    {% for tree_category, info in root_categories %}
+                        {% if tree_category.name ==  product_type.name %}
+                    
+                        <b>{{ tree_category.description|safe }}</b>
+                            <ul>
+                                {% for category in tree_category.get_children %}
+                                    <li><a href="{{category.get_absolute_url}}">{{category.name}}</a></li>
+                                {% endfor %}
+                            </ul>
                         {% endif %}
-                    </ul>
+                    {% endfor %}
                 </li>
-            </ul>
-        </li>
+            </ul>    
+    </li>
 
+{% endfor %}
     </ul>
 </div>

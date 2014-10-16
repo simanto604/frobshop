@@ -64,7 +64,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'frobshop',
+        'NAME': 'frobshop2',
         'USER': 'postgres',
         'PASSWORD': 'qweqwe',
         'HOST': '127.0.0.1',
@@ -100,6 +100,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'oscar.apps.checkout.context_processors.checkout',
     'oscar.apps.customer.notifications.context_processors.notifications',
     'oscar.core.context_processors.metadata',
+
+    "frobshop.catalogue.context_processors.product_class",
 )
 
 HAYSTACK_CONNECTIONS = {
@@ -133,7 +135,7 @@ SITE_ID = 1
 # EMAIL_USE_TLS = False
 
 
-MEDIA_ROOT = "/home/django/frobshop/media"
+MEDIA_ROOT = "/var/django/frobshop/media"
 MEDIA_URL = '/media/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/

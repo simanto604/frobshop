@@ -8,15 +8,15 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding field 'Product.video_url'
-        db.add_column(u'catalogue_product', 'video_url',
-                      self.gf('django.db.models.fields.URLField')(default='', max_length=200),
-                      keep_default=False)
+        # Deleting field 'ProductImage.attribute_value'
+        db.delete_column(u'catalogue_productimage', 'attribute_value_id')
 
 
     def backwards(self, orm):
-        # Deleting field 'Product.video_url'
-        db.delete_column(u'catalogue_product', 'video_url')
+        # Adding field 'ProductImage.attribute_value'
+        db.add_column(u'catalogue_productimage', 'attribute_value',
+                      self.gf('django.db.models.fields.related.ForeignKey')(to=orm['catalogue.ProductAttributeValue'], null=True, blank=True),
+                      keep_default=False)
 
 
     models = {
@@ -81,8 +81,7 @@ class Migration(SchemaMigration):
             'score': ('django.db.models.fields.FloatField', [], {'default': '0.0', 'db_index': 'True'}),
             'slug': ('django.db.models.fields.SlugField', [], {'max_length': '255'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
-            'upc': ('oscar.models.fields.NullCharField', [], {'max_length': '64', 'unique': 'True', 'null': 'True', 'blank': 'True'}),
-            'video_url': ('django.db.models.fields.URLField', [], {'max_length': '200'})
+            'upc': ('oscar.models.fields.NullCharField', [], {'max_length': '64', 'unique': 'True', 'null': 'True', 'blank': 'True'})
         },
         u'catalogue.productattribute': {
             'Meta': {'ordering': "['code']", 'object_name': 'ProductAttribute'},

@@ -30,8 +30,10 @@
         <div class="pro-text">
         {% purchase_info_for_product request product as session %}
             <h2>{{ product.get_title|truncatewords:4 }}</h2>
-            <p>{% if product.description %} {{ product.description|safe|truncatewords:10 }} {% endif %}
-            {% include "catalogue/partials/stock_record.html" %}</p>
+            <p>
+                {% if product.description %} {{ product.description|safe|truncatewords:10 }} {% endif %}
+                {% include "catalogue/partials/stock_record.html" %}
+            </p>
             <span>
                 {% iffeature "reviews" %}
                 <p class="star-rating {{ product.rating|as_stars }}">
@@ -43,7 +45,16 @@
                 </p>
                 {% endiffeature %}
             </span>
-            <a class="morecolor" href="#">More Colors</a>
+            <a class="morecolor" href="#">
+                {% with attributes=product.attr.get_all_attributes%}
+                
+                {% for attribute in attributes %}
+                    {% with mycolor=attribute.get_attribute_by_code %}
+                    {{mycolor}}
+                    {% endwith %}
+                {% endfor %}
+                {% endwith %}
+            </a>
             
             {% if not product.is_group %}
                 {% include "verecom/catalogue/partials/add_to_basket_form_compact.html" %}
@@ -53,3 +64,4 @@
     </div>
 
 {% endblock %}
+    
