@@ -51,17 +51,32 @@
         <div class="rightside">
             <div class="page-location">
                 <ul>
-                    <li><a href="#">Women's Apparel</a></li>
-                    <li> &gt; </li>
-                    <li>hello</li>
+                    {% comment %}
+                    {% if tree_categories %}                        
+                        {% for tree_category, info in tree_categories %}
+                            {% if info.name == category %}
+                                <li>                                    
+                                <a tabindex="-1" href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a> </li>                               
+                            {% else %}
+                                <li><a tabindex="-1" href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endcomment %}
                 </ul>
             </div>
             
-            <div class="cat-title-area">
-            {% with category=product.categories.all.0 %}
-                <span>Best Sellers</span> <h2>hello</h2>
-                
-            {% endwith %}
+            <div class="cat-title-area">                           
+                <span>
+                    {% if category.has_children %}
+                        {{ category.get_last_root_node }}
+                    {% else %}
+                        {{ category.get_parent }}
+                    {% endif %}
+                </span>
+                <h2>
+                    {{ category.name }}                    
+                </h2>           
             </div>
         {% if products %}
             <div class="product-con">

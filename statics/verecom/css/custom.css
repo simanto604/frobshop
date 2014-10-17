@@ -77,3 +77,32 @@ transition: border 200ms ease 0s;
 #thumbs {
 	margin-top: 0px;
 }
+
+
+/** Product category page **/
+.product-con {
+    padding-top: 10px;
+}
+
+.product-con .leftborder {
+   border-left: 1px solid #ddd;
+}
+
+.product-con .pro-text {
+	/*text-align: center;*/
+	padding-top: 15px;
+}
+
+.product-con .pro-text h2 {
+	font-size: 16px;
+	padding: 3px;
+	font-family: sans-serif;
+	
+}
+
+.product-con .color-thumbnail {
+	/*text-align: center;*/
+}
+
+
+/** End of product category page **/

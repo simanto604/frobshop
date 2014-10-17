@@ -1,7 +1,7 @@
 from django.contrib import admin
 from oscar.core.loading import get_model
 from treebeard.admin import TreeAdmin
-from frobshop.catalogue.models import SizeNFit
+from frobshop.catalogue.models import SizeNFit , ProductColor , ProductImage
 
 
 AttributeEntity = get_model('catalogue', 'AttributeEntity')
@@ -17,6 +17,7 @@ ProductCategory = get_model('catalogue', 'ProductCategory')
 ProductClass = get_model('catalogue', 'ProductClass')
 ProductImage = get_model('catalogue', 'ProductImage')
 ProductRecommendation = get_model('catalogue', 'ProductRecommendation')
+ProductColor = get_model('catalogue', 'ProductColor')
 
 
 class AttributeInline(admin.TabularInline):
@@ -50,6 +51,8 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
     inlines = [AttributeInline, CategoryInline, ProductRecommendationInline]
 
+class ProductColorAdmin(admin.ModelAdmin):
+    list_display = ('color','color_thumbnail')
 
 class ProductAttributeAdmin(admin.ModelAdmin):
     list_display = ('name', 'code', 'product_class', 'type')
@@ -93,3 +96,4 @@ admin.site.register(ProductImage)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(ProductCategory)
 admin.site.register(SizeNFit)
+admin.site.register(ProductColor,ProductColorAdmin)

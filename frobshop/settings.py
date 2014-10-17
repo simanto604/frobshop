@@ -64,9 +64,9 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'frobshop2',
+        'NAME': 'frobshop',
         'USER': 'postgres',
-        'PASSWORD': 'qweqwe',
+        'PASSWORD': '123',
         'HOST': '127.0.0.1',
         'PORT': '5432',
 
