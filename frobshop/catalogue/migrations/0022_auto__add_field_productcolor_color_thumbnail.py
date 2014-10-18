@@ -8,15 +8,15 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding field 'ProductColor.shopbop_color_thumnail_url'
-        db.add_column(u'catalogue_productcolor', 'shopbop_color_thumnail_url',
-                      self.gf('django.db.models.fields.CharField')(max_length=400, null=True, blank=True),
+        # Adding field 'ProductColor.color_thumbnail'
+        db.add_column(u'catalogue_productcolor', 'color_thumbnail',
+                      self.gf('django.db.models.fields.files.ImageField')(default='', max_length=100, blank=True),
                       keep_default=False)
 
 
     def backwards(self, orm):
-        # Deleting field 'ProductColor.shopbop_color_thumnail_url'
-        db.delete_column(u'catalogue_productcolor', 'shopbop_color_thumnail_url')
+        # Deleting field 'ProductColor.color_thumbnail'
+        db.delete_column(u'catalogue_productcolor', 'color_thumbnail')
 
 
     models = {
@@ -76,6 +76,7 @@ class Migration(SchemaMigration):
             'is_discountable': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'parent': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'variants'", 'null': 'True', 'to': u"orm['catalogue.Product']"}),
             'product_class': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'products'", 'null': 'True', 'on_delete': 'models.PROTECT', 'to': u"orm['catalogue.ProductClass']"}),
+            'product_id': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'product_options': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['catalogue.Option']", 'symmetrical': 'False', 'blank': 'True'}),
             'rating': ('django.db.models.fields.FloatField', [], {'null': 'True'}),
             'recommended_products': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['catalogue.Product']", 'symmetrical': 'False', 'through': u"orm['catalogue.ProductRecommendation']", 'blank': 'True'}),
@@ -131,22 +132,23 @@ class Migration(SchemaMigration):
         u'catalogue.productcolor': {
             'Meta': {'object_name': 'ProductColor'},
             'color': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
+            'color_order': ('django.db.models.fields.IntegerField', [], {}),
             'color_thumbnail': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'primary_color': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'product': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'product_color'", 'null': 'True', 'to': u"orm['catalogue.Product']"}),
-            'shopbop_color_thumnail_url': ('django.db.models.fields.CharField', [], {'max_length': '400', 'null': 'True', 'blank': 'True'})
+            'shopbop_color_thumnail_url': ('django.db.models.fields.CharField', [], {'max_length': '1000', 'null': 'True', 'blank': 'True'})
         },
         u'catalogue.productimage': {
             'Meta': {'ordering': "['display_order']", 'unique_together': "(('product', 'display_order'),)", 'object_name': 'ProductImage'},
             'caption': ('django.db.models.fields.CharField', [], {'max_length': '200', 'blank': 'True'}),
-            'color': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'product_image_color'", 'null': 'True', 'to': u"orm['catalogue.ProductColor']"}),
             'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'display_order': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'original': ('django.db.models.fields.files.ImageField', [], {'max_length': '255'}),
             'product': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'images'", 'to': u"orm['catalogue.Product']"}),
-            'shopbop_image_url': ('django.db.models.fields.CharField', [], {'max_length': '400', 'null': 'True', 'blank': 'True'})
+            'shopbop_big_image_url': ('django.db.models.fields.CharField', [], {'max_length': '1000', 'null': 'True', 'blank': 'True'}),
+            'shopbop_thumb_url': ('django.db.models.fields.CharField', [], {'max_length': '1000', 'null': 'True', 'blank': 'True'})
         },
         u'catalogue.productrecommendation': {
             'Meta': {'object_name': 'ProductRecommendation'},
@@ -157,7 +159,15 @@ class Migration(SchemaMigration):
         },
         u'catalogue.productsize': {
             'Meta': {'object_name': 'ProductSize'},
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'product': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'product_size'", 'null': 'True', 'to': u"orm['catalogue.Product']"}),
+            'size': ('django.db.models.fields.CharField', [], {'max_length': '10', 'null': 'True', 'blank': 'True'})
+        },
+        u'catalogue.relatedproduct': {
+            'Meta': {'object_name': 'RelatedProduct'},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'product': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'product_releted_by_id'", 'null': 'True', 'to': u"orm['catalogue.Product']"}),
+            'releted_product_id': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'})
         },
         u'catalogue.sizenfit': {
             'Meta': {'object_name': 'SizeNFit'},
