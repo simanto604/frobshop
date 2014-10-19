@@ -24,10 +24,10 @@
                 {% thumbnail image.original "150x300" upscale=False as thumb %}
                 <a href="{{ product.get_absolute_url }}">
                     <img src="
-                        {% if not image.shopbop_image_url %}
+                        {% if not image.shopbop_big_image_url %}
                             {{ thumb.url }}
                         {% else %}
-                            {{ image.shopbop_image_url }}
+                            {{ image.shopbop_big_image_url }}
                         {% endif %}"
                         alt="{{ product.get_title }}"
                     >
@@ -36,25 +36,35 @@
             {% endwith %}           
             </div>
         {% endif %}
-        <div class="pro-text">
-            <h2>{{ product.get_brand|truncatewords:4 }}</h2>
-            <h2>{{ product.get_title|truncatewords:4 }}</h2>
-            
-            <p class="pro-price">
+        <div class="info clearfix">
+            <div class="brand">
+                {{ product.get_brand|truncatewords:4 }}
+            </div>
+            <div class="title">
+                {{ product.get_title|truncatewords:10 }}
+            </div>
+            <div class="price">
+            {% if product.stockrecords.select_related %}
                 <span>{{ product.stockrecords.select_related.0.currency }}</span>
                 <span>{{ product.stockrecords.select_related.0.price_retail|currency:product.stockrecords.select_related.0.price_currency }}</span>
-            </p>        
+            {% else %}
+                <span>No price info</span>
+            {% endif %}
+            </div>        
+        
+            <div class="colors">
+                {% for color in product.product_color.select_related %}
+                    <div class="color {% if color.primary_color == True %} selected {% endif %}">
+                        <a href="{{ product.get_absolute_url }}">
+                            <img src="{{ color.shopbop_color_thumnail_url }}" alt="{{ product.get_title }}" class="">
+                        </a>
+                    </div>                
+                {% endfor %}    
+                <div style="clear: both"></div> 
+            </div>
+            <div style="clear: both"></div>
         </div>
         <div style="clear: both"></div>
-        <div class="color-thumbnail">
-            {% for color in product.product_color.select_related %}
-                {% thumbnail color.color_thumbnail "11x10" upscale=False as thumb %}
-                    <a href="get/product-image/{{ color.id }}">
-                        <img src="{{ thumb.url }}" alt="{{ product.get_title }}" class="">
-                    </a>    
-                {% endthumbnail %}                        
-            {% endfor %}     
-        </div>
     </div>
 
 {% endblock %}

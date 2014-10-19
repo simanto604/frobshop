@@ -1,12 +1,13 @@
 # yourproject/catalogue/models.py
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
-
+from django.conf import settings
 from oscar.apps.catalogue.abstract_models import AbstractProductImage, AbstractProduct
 
 
 class Product(AbstractProduct):
     product_id = models.CharField(_('Product ID'), max_length=100, blank=True, null=True)
+    product_sku = models.CharField(_('Product SKU'), max_length=100, blank=True, null=True)
     brand_name = models.CharField(_('Brand'), max_length=255, blank=True, null=True)
     designer = models.TextField(_('Designer'), blank=True, null=True)
     # title = models.CharField(_('Title'), max_length=255, blank=True, null=True)
@@ -66,6 +67,9 @@ class ProductColor(models.Model):
     shopbop_color_thumnail_url = models.CharField(_('Shopbop Color Thumbnail Url'), max_length=1000, blank=True, null=True)
     primary_color = models.BooleanField(default = False)
     color_order = models.IntegerField()
+
+    class Meta:
+        ordering = ['color_order']
     
     def __unicode__(self):
         return self.color
@@ -74,7 +78,6 @@ class ProductColor(models.Model):
 class ProductImage(AbstractProductImage):
     shopbop_thumb_url = models.CharField(_('Shopbop Thumb Url'), max_length=1000, blank=True, null=True)
     shopbop_big_image_url = models.CharField(_('Shopbop Big Image Url'), max_length=1000, blank=True, null=True)
-
 
 class ProductSize(models.Model):
     product = models.ForeignKey(Product, null=True, blank=True, related_name="product_size")
