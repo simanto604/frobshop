@@ -6,12 +6,12 @@ from oscar.apps.catalogue.abstract_models import AbstractProductImage, AbstractP
 
 
 class Product(AbstractProduct):
-    product_id = models.CharField(_('Product ID'), max_length=100, blank=True, null=True)
+    product_id = models.CharField(_('Product ID'), max_length=100, blank=True, unique=True)
     product_sku = models.CharField(_('Product SKU'), max_length=100, blank=True, null=True)
     brand_name = models.CharField(_('Brand'), max_length=255, blank=True, null=True)
-    designer = models.TextField(_('Designer'), blank=True, null=True)
-    # title = models.CharField(_('Title'), max_length=255, blank=True, null=True)
-    style = models.CharField(_('Style'), max_length=255, blank=True, null=True)
+    # designer = models.TextField(_('Designer'), blank=True, null=True)
+    # # title = models.CharField(_('Title'), max_length=255, blank=True, null=True)
+    # style = models.CharField(_('Style'), max_length=255, blank=True, null=True)
     
     @property
     def get_brand(self):
@@ -22,16 +22,6 @@ class Product(AbstractProduct):
         if not brand:
             brand = 'Brand Name'
         return brand
-
-    @property
-    def get_style(self):
-        """
-        Return product's style
-        """
-        style = self.style
-        if not style:
-            style = 'Title not given'
-        return style
 
 
 

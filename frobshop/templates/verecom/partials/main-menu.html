@@ -6,14 +6,15 @@
 {% for product_type in product_types %}
 
     <li id="{{ tree_category.name }}" class="menu-item span-3 first-child">
-        <a href="{{ product_type.get_absolute_url }}">{{product_type.name}}</a>
+        <a href="{{ category_tree.get_absolute_url }}">{{product_type.name}}</a>
             <ul class="sub-menu">
                 <li class="sub-menu-column first-child">
                     {% for tree_category, info in root_categories %}
                         {% if tree_category.name ==  product_type.name %}
-                    
+                        
                         <b>{{ tree_category.description|safe }}</b>
                             <ul>
+                                <li><a href='{{tree_category.get_absolute_url}}'>Show all</a></li>
                                 {% for category in tree_category.get_children %}
                                     <li><a href="{{category.get_absolute_url}}">{{category.name}}</a></li>
                                 {% endfor %}
