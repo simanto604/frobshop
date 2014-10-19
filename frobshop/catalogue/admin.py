@@ -52,7 +52,7 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [AttributeInline, CategoryInline, ProductRecommendationInline]
 
 class ProductColorAdmin(admin.ModelAdmin):
-    list_display = ('color')
+    list_display = ('color',)
 
 class ProductAttributeAdmin(admin.ModelAdmin):
     list_display = ('name', 'code', 'product_class', 'type')
