@@ -53,7 +53,7 @@ class ProductColor(models.Model):
     '''
     product = models.ForeignKey(Product, null=True, blank=True, related_name="product_color")
     color = models.CharField(_('Color'), max_length=255, blank=True, null=True)
-    color_thumbnail = models.ImageField(upload_to = 'color_thumnails/' ,  blank=True, null=True)
+    # color_thumbnail = models.ImageField(upload_to = 'color_thumnails/' ,  blank=True, null=True)
     shopbop_color_thumnail_url = models.CharField(_('Shopbop Color Thumbnail Url'), max_length=1000, blank=True, null=True)
     primary_color = models.BooleanField(default = False)
     color_order = models.IntegerField()
