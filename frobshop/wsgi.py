@@ -8,6 +8,11 @@ https://docs.djangoproject.com/en/1.6/howto/deployment/wsgi/
 """
 
 import os
+import sys
+
+sys.path.append("/var/django/frobshop")
+sys.path.append("/var/django/frobshop/frobshop")
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "frobshop.settings")
 from dj_static import Cling
 
