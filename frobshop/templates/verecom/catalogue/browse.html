@@ -47,31 +47,48 @@
     </ul>
 </div>
 
-    {% if products %}
+    
         <div class="rightside">
             <div class="page-location">
                 <ul>
-                    <li><a href="#">Women's Apparel</a></li>
-                    <li> &gt; </li>
-                    <li> Best Sellers </li>
+                    {% comment %}
+                    {% if tree_categories %}                        
+                        {% for tree_category, info in tree_categories %}
+                            {% if info.name == category %}
+                                <li>                                    
+                                <a tabindex="-1" href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a> </li>                               
+                            {% else %}
+                                <li><a tabindex="-1" href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endcomment %}
                 </ul>
             </div>
             
-            <div class="cat-title-area">
-                <span>Best Sellers</span> <h2>Women's Apparel</h2>
-                
+            <div class="cat-title-area">                           
+                <span>
+                    {% if category.has_children %}
+                        {{ category.get_last_root_node }}
+                    {% else %}
+                        {{ category.get_parent }}
+                    {% endif %}
+                </span>
+                <h2>
+                    {{ category.name }}                    
+                </h2>           
             </div>
-            <div class="product-con">
+        {% if products %}
+            <div class="product-con" id="pro-list">
                 {% for product in products %}
                     {% include "verecom/partials/product.html" %}
                 {% endfor %}
                 {% include "partials/pagination.html" %}
             </div>
             
-        </div>
-    {% else %}
-        <div class="rightside">
+        {% else %}
             {% trans "No products found." %}
+        
+        {% endif %}
         </div>
-    {% endif %}
 {% endblock content %}
