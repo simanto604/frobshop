@@ -2,19 +2,55 @@
 {% load i18n %}
 
 {% if paginator.num_pages > 1 %}
-    <div>
-        <ul class="pager">
-            {% if page_obj.has_previous %}
-                <li class="previous"><a href="?{% get_parameters page %}page={{ page_obj.previous_page_number }}">{% trans "previous" %}</a></li>
-            {% endif %}
-            <li class="current">
+<div class="viwepage">
+    <div class="page-numbers">
+        <ul>
+            <li>
             {% blocktrans with page_num=page_obj.number total_pages=paginator.num_pages %}
-                Page {{ page_num }} of {{ total_pages }}
+            {{ total_pages }} Items
             {% endblocktrans %}
             </li>
-            {% if page_obj.has_next %}
-                <li class="next"><a href="?{% get_parameters page %}page={{ page_obj.next_page_number }}">{% trans "next" %}</a></li>
-            {% endif %}
+            <li class="line">
+            |
+            </li>
+
+            <li>
+            {% blocktrans with page_num=page_obj.number total_pages=paginator.num_pages %}
+            Page {{ page_num }} of {{ total_pages }}
+            {% endblocktrans %}
+            </li>
+            <li class="line">
+            |
+            </li>
         </ul>
     </div>
+
+    <div class="pageing">
+        <ul>
+            {% if page_obj.has_previous %}
+            <li class="previous"><a href="{% get_parameters page %}page={{ page_obj.previous_page_number }}"><img src="/media/images/prev-first.gif" width="6" height="10"></a></li>
+            {% endif %}
+            <li>
+            <a href="#">1</a>
+            </li>
+            <li class="active">
+            <a href="#">2</a>
+            </li>
+            <li>
+            <a href="#">3</a>
+            </li>
+            <li>
+            <a href="#">4</a>
+            </li>
+            <li>
+            <a href="#">5</a>
+            </li>
+
+            {% if page_obj.has_next %}
+            <li class="next"><a href="{% get_parameters page %}page={{ page_obj.next_page_number }}"><img src="/media/images/next.gif" width="6" height="10"></a></li>
+            {% endif %}
+
+        </ul>
+    </div>
+</div>
 {% endif %}

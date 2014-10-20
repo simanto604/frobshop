@@ -79,11 +79,13 @@
                 </h2>           
             </div>
         {% if products %}
+            {% include "partials/pagination.html" %}
             <div class="product-con" id="pro-list">
+
                 {% for product in products %}
                     {% include "verecom/partials/product.html" %}
                 {% endfor %}
-                {% include "partials/pagination.html" %}
+                
             </div>
             
         {% else %}

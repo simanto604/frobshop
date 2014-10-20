@@ -84,6 +84,15 @@ transition: border 200ms ease 0s;
     padding-top: 10px;
 }
 
+.product-con .product{
+	border-bottom: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+}
+
+.product-con .product:nth-child(4n){
+	border-right: none;
+	margin-top: -1px;
+}
 
 .product-con .product .info {
 	/*text-align: center;*/
@@ -166,4 +175,12 @@ transition: border 200ms ease 0s;
 }
 .colors {
 	padding: 2px 0px;
+}
+
+.viwepage {
+    clear: both;
+    float: right;
+    margin: 15px 0px;
+    overflow: hidden;
+    width: 250px;
 }
