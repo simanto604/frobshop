@@ -67,6 +67,7 @@ class ProductColor(models.Model):
 
 class ProductImage(AbstractProductImage):
     shopbop_thumb_url = models.CharField(_('Shopbop Thumb Url'), max_length=1000, blank=True, null=True)
+    shopbop_image_url = models.CharField(_('Shopbop Image Url'), max_length=1000, blank=True, null=True)
     shopbop_big_image_url = models.CharField(_('Shopbop Big Image Url'), max_length=1000, blank=True, null=True)
 
 class ProductSize(models.Model):
